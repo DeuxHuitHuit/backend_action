@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension id="backend_action" status="experimental" xmlns="http://symphony-cms.com/schemas/extension/1.0">
+	<name>Backend Action</name>
+	<description>
+		Adds the ability to customize actions in the backend.
+		The extension provides a field that will execute the specified php script when activated.
+	</description>
+	<repo type="github">https://github.com/DeuxHuitHuit/backend_action</repo>
+	<url type="discuss">https://github.com/DeuxHuitHuit/backend_action/issues</url>
+	<types>
+		<type>Field</type>
+		<type>Backend</type>
+	</types>
+	<authors>
+		<author>
+			<name github="DeuxHuitHuit" symphony="nitriques" twitter="DeuxHuitHuit">Deux Huit Huit</name>
+			<website>http://deuxhuithuit.com/</website>
+		</author>
+	</authors>
+	<dependencies>
+		<!-- None -->
+	</dependencies>
+	<releases>
+		<release version="1.0" date="2013-11-13" min="2.3">
+			- First release
+		</release>
+	</releases>
+</extension>
