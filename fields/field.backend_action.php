@@ -401,7 +401,7 @@
 			try {
 				include WORKSPACE . $this->fixScriptPath($this->get('script_path'));
 			} catch (Exception $ex) {
-				Administration::instance()->Page->pageAlert(__('Backend Action: Error ') . $ex->getMessage(), Alert::SUCCESS);
+				Administration::instance()->Page->pageAlert(__('Backend Action: Error ') . $ex->getMessage(), Alert::ERROR);
 			}
 			
 			return $success;
