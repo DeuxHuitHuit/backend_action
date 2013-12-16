@@ -398,8 +398,11 @@
 		public function executeBackendAction($entry) {
 			$success = false;
 			$field = $this;
-			
-			include WORKSPACE . $this->fixScriptPath($this->get('script_path'));
+			try {
+				include WORKSPACE . $this->fixScriptPath($this->get('script_path'));
+			} catch (Exception $ex) {
+				Administration::instance()->Page->pageAlert(__('Backend Action: Error ') . $ex->getMessage(), Alert::SUCCESS);
+			}
 			
 			return $success;
 		}
