@@ -245,7 +245,7 @@
 		 * @param int $entry_id
 		 */
 		public function displayPublishPanel(&$wrapper, $data=NULL, $flagWithError=NULL, $fieldnamePrefix=NULL, $fieldnamePostfix=NULL, $entry_id = null) {
-			var_dump($data);//, $this->get());die;
+			//var_dump($data);//, $this->get());die;
 			
 			if ($data == null || !isset($data['executed'])) {
 				$wrapper->setValue(__('Please save the entry before trying any actions.'));
