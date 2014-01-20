@@ -7,7 +7,7 @@ The extension provides a field that will execute the specified php script when a
 
 ### REQUIREMENTS ###
 
-- Symphony CMS version 2.3 and up (as of the day of the last release of this extension)
+- Symphony CMS version 2.3.4 and up (as of the day of the last release of this extension)
 
 ### INSTALLATION ###
 
@@ -30,5 +30,5 @@ Come say hi! -> <http://www.deuxhuithuit.com/>
 
 ### History ###
 
-- 1.0 - 2013-11-13    
+- 1.0 - 2014-01-20    
   First release  

@@ -81,7 +81,7 @@
 		 * @param $message
 		 * @param $entry_id
 		 */
-		public function checkPostFieldData($data, &$message, $entry_id=NULL){
+		public function checkPostFieldData($data, &$message, $entry_id = null){
 			// Always valid!
 			$message = NULL;
 			return self::__OK__;
@@ -217,10 +217,7 @@
 			$btn = new XMLElement('button', $btn_text, array(
 						'type' => 'submit',
 						'name' => 'action[backend-action]',
-						//'data-action' => $this->get('element_name'),
-						//'data-field-id' => $this->get('id'),
-						//'data-entry-id' => $data['entry_id'],
-						'value' => $this->get('id'),
+						'value' => $this->get('id'), // field id
 						'class' => 'backend-action'
 					));
 			
@@ -245,8 +242,9 @@
 		 * @param mixed $flagWithError
 		 * @param string $fieldnamePrefix
 		 * @param string $fieldnamePostfix
+		 * @param int $entry_id
 		 */
-		public function displayPublishPanel(&$wrapper, $data=NULL, $flagWithError=NULL, $fieldnamePrefix=NULL, $fieldnamePostfix=NULL) {
+		public function displayPublishPanel(&$wrapper, $data=NULL, $flagWithError=NULL, $fieldnamePrefix=NULL, $fieldnamePostfix=NULL, $entry_id = null) {
 			var_dump($data);//, $this->get());die;
 			
 			if ($data == null || !isset($data['executed'])) {
@@ -353,7 +351,7 @@
 		 * @param XMLElement $link
 		 * @return string - the html of the link
 		 */
-		public function prepareTableValue($data, XMLElement $link=NULL){
+		public function prepareTableValue($data, XMLElement $link=NULL, $entry_id = null){
 			
 			if ($this->shouldDisplayActionButton($data)) {
 				$link = $this->createButton($data);
@@ -370,18 +368,8 @@
 				return $link->generate();
 			}
 		}
-
-		/**
-		 *
-		 * Return a plain text representation of the field's data
-		 * @param array $data
-		 * @param int $entry_id
-		 */
-		public function preparePlainTextValue($data, $entry_id = null) {
-			return $this->get('script_path');
-		}
-
-
+		
+		
 		/**
 		 *
 		 * This function allows Fields to cleanup any additional things before it is removed
