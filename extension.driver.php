@@ -1,6 +1,6 @@
 <?php
 	/*
-	Copyight: Deux Huit 2013
+	Copyright: Deux Huit Huit 2014
 	License: MIT, see the LICENCE file
 	http://deuxhuithuit.mit-license.org/
 	*/
