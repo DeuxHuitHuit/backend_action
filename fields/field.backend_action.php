@@ -245,9 +245,13 @@
 		 * @param int $entry_id
 		 */
 		public function displayPublishPanel(&$wrapper, $data=NULL, $flagWithError=NULL, $fieldnamePrefix=NULL, $fieldnamePostfix=NULL, $entry_id = null) {
-			//var_dump($data);//, $this->get());die;
+			//var_dump($data, $this->get());die;
+			
+			// Label
+			$label = Widget::Label($this->get('label'));
 			
 			if ($data == null || !isset($data['executed'])) {
+				$wrapper->appendChild($label);
 				$wrapper->setValue(__('Please save the entry before trying any actions.'));
 				return;
 			}
@@ -256,9 +260,6 @@
 			
 			// Global wrapper
 			$field_wrapper = new XMLElement('div');
-			
-			// Label
-			$label = Widget::Label($this->get('label'));
 			$field_wrapper->appendChild($label);
 			
 			// input form
@@ -285,7 +286,7 @@
 			
 			// error management, with global wrapper
 			if($flagWithError != NULL) {
-				$wrapper->appendChild(Widget::wrapFormElementWithError($field_wrapper, $flagWithError));
+				$wrapper->appendChild(Widget::Error($field_wrapper, $flagWithError));
 			} else {
 				$wrapper->appendChild($field_wrapper);
 			}
@@ -337,7 +338,7 @@
 			}
 		
 			if (isset($errors[$key])) {
-				$lbl = Widget::wrapFormElementWithError($lbl, $errors[$key]);
+				$lbl = Widget::Error($lbl, $errors[$key]);
 			}
 		
 			return $lbl;
@@ -364,7 +365,11 @@
 				if (!$link) {
 					$link = new XMLElement('span');
 				}
-				$link->setValue(__('Already executed.'));
+				if ($data == null || !isset($data['executed'])) {
+					$link->setValue(__('Please save the entry.'));
+				} else {
+					$link->setValue(__('Already executed.'));
+				}
 				return $link->generate();
 			}
 		}
