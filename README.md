@@ -1,6 +1,6 @@
 # Backend Action #
 
-Version: 1.0
+Version: 1.1
 
 Adds the ability to customize actions in the backend.
 The extension provides a field that will execute the specified php script when activated.
