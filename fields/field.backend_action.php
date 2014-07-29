@@ -101,7 +101,12 @@
 		public function processRawFieldData($data, &$status, &$message = null, $simulate = false, $entry_id = null) {
 			$status = self::__OK__;
 			
-			//var_dump($data);die;
+			if ($data == null) {
+				return array(
+					'executed' => 'no',
+					'last_execution' => null
+				);
+			}
 			
 			return array(
 				'executed' => $data['executed'] == 'yes' ? 'yes' : 'no',
@@ -160,7 +165,7 @@
 			$settings['allow_multiple'] = $this->get('allow_multiple');
 			$settings['action_name'] = $this->get('action_name');
 
-			// officialy save it
+			// officially save it
 			return FieldManager::saveSettings( $id, $settings);
 		}
 		
