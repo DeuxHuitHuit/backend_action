@@ -27,8 +27,3 @@ Come say hi! -> <http://www.deuxhuithuit.com/>
 - Set up the php script you want to execute when the button is pressed. The script location is relative to the workspace.
 - In the script, you get a reference to and `Entry` object and a `Field` Object. Variable names are `$entry` and `$field`.
 - Be sure to set the `$success` variable to `true` in order to mark the action as being executed.
-
-### History ###
-
-- 1.0 - 2014-01-20    
-  First release  
