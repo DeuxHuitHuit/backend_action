@@ -110,26 +110,22 @@
 		 * @param array $context
 		 */
 		public function appendToHead(Array $context) {
-			// store de callback array locally
+			// store the callback array locally
 			$c = Administration::instance()->getPageCallback();
 			
 			// publish page
 			if($c['driver'] == 'publish'){
-				
-				//var_dump($context, $c);die;
-				
 				Administration::instance()->Page->addScriptToHead(
 					URL . '/extensions/backend_action/assets/publish.backend_action.js',
 					time(),
 					false
 				);
-				/*
 				Administration::instance()->Page->addStylesheetToHead(
 					URL . '/extensions/backend_action/assets/publish.backend_action.css',
 					'screen',
 					time() + 1,
 					false
-				);*/
+				);
 			}
 		}
 		

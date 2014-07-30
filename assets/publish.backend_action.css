@@ -1,0 +1,9 @@
+/**
+ * Publish backend action css
+ * 
+ * @author: Deux Huit Huit
+ * 
+ */
+table td.field-backend_action button {
+	margin-left: 0;
+}
