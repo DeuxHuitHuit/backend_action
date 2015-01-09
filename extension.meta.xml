@@ -14,13 +14,16 @@
 	<authors>
 		<author>
 			<name github="DeuxHuitHuit" symphony="nitriques" twitter="DeuxHuitHuit">Deux Huit Huit</name>
-			<website>http://deuxhuithuit.com/</website>
+			<website>https://deuxhuithuit.com/</website>
 		</author>
 	</authors>
 	<dependencies>
 		<!-- None -->
 	</dependencies>
 	<releases>
+		<release version="1.1.1" date="2015-01-09" min="2.4.0" max="2.6.x">
+			- Fixed a bug (#2) with Date Format
+		</release>
 		<release version="1.1" date="2014-07-30" min="2.4.0" max="2.5.x">
 			- Compatibility with 2.4 and 2.5
 			- Small css improvements
