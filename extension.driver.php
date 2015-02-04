@@ -75,7 +75,7 @@
 					if ($sucess === true) {
 						$entry->setData($field_id, array(
 							'executed' => 'yes',
-							'last_execution' => 'last_execution' => DateTimeObj::getGMT('Y-m-d H:i:s', $timestamp)
+							'last_execution' => DateTimeObj::getGMT('Y-m-d H:i:s', $timestamp)
 						));
 						$entry->commit();
 					}
