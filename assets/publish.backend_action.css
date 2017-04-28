@@ -1,9 +1,14 @@
 /**
  * Publish backend action css
- * 
+ *
  * @author: Deux Huit Huit
- * 
+ *
  */
-table td.field-backend_action button {
-	margin-left: 0;
+
+.field-backend_action label {
+	margin-bottom: 1rem!important;
+}
+
+.field-backend_action button {
+	margin-left: 1rem;
 }

@@ -257,7 +257,7 @@
 
 			if ($data == null || !isset($data['executed'])) {
 				$wrapper->appendChild($label);
-				$wrapper->setValue(__('Please save the entry before trying any actions.'));
+				$wrapper->setValue('<p>' . __('Please save the entry before trying any actions.') . '</p>');
 				return;
 			}
 
