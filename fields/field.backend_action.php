@@ -180,7 +180,7 @@
 		 *
 		 * Validates the field settings before saving it into the field's table
 		 */
-		public function checkFields(Array &$errors, $checkForDuplicates) {
+		public function checkFields(array &$errors, $checkForDuplicates = true) {
 			parent::checkFields($errors, $checkForDuplicates);
 
 			$settings = $this->get();
@@ -207,7 +207,7 @@
 		 * @param $wrapper
 		 * @param $data
 		 */
-		public function appendFormattedElement(&$wrapper, $data) {
+		public function appendFormattedElement(XMLElement &$wrapper, $data, $encode = false, $mode = null, $entry_id = null) {
 			// NOTHING
 		}
 
@@ -249,7 +249,7 @@
 		 * @param string $fieldnamePostfix
 		 * @param int $entry_id
 		 */
-		public function displayPublishPanel(&$wrapper, $data=NULL, $flagWithError=NULL, $fieldnamePrefix=NULL, $fieldnamePostfix=NULL, $entry_id = null) {
+		public function displayPublishPanel(XMLElement &$wrapper, $data=NULL, $flagWithError=NULL, $fieldnamePrefix=NULL, $fieldnamePostfix=NULL, $entry_id = null) {
 			//var_dump($data, $this->get());die;
 
 			// Label
@@ -304,7 +304,7 @@
 		 * @param XMLElement $wrapper
 		 * @param array $errors
 		 */
-		public function displaySettingsPanel(&$wrapper, $errors=NULL){
+		public function displaySettingsPanel(XMLElement &$wrapper, $errors = null) {
 
 			/* first line, label and such */
 			parent::displaySettingsPanel($wrapper, $errors);
