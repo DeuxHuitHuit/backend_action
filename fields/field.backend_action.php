@@ -83,7 +83,7 @@
 		 */
 		public function checkPostFieldData($data, &$message, $entry_id = null){
 			// Always valid!
-			$message = NULL;
+			$message = null;
 			return self::__OK__;
 		}
 
@@ -147,12 +147,12 @@
 		public function commit() {
 
 			// if the default implementation works...
-			if(!parent::commit()) return FALSE;
+			if(!parent::commit()) return false;
 
 			$id = $this->get('id');
 
 			// exit if there is no id
-			if($id == false) return FALSE;
+			if($id == false) return false;
 
 			// declare an array contains the field's settings
 			$settings = array();
@@ -249,7 +249,7 @@
 		 * @param string $fieldnamePostfix
 		 * @param int $entry_id
 		 */
-		public function displayPublishPanel(XMLElement &$wrapper, $data=NULL, $flagWithError=NULL, $fieldnamePrefix=NULL, $fieldnamePostfix=NULL, $entry_id = null) {
+		public function displayPublishPanel(XMLElement &$wrapper, $data = null, $flagWithError = null, $fieldnamePrefix = null, $fieldnamePostfix = null, $entry_id = null) {
 			//var_dump($data, $this->get());die;
 
 			// Label
@@ -290,7 +290,7 @@
 
 
 			// error management, with global wrapper
-			if($flagWithError != NULL) {
+			if($flagWithError != null) {
 				$wrapper->appendChild(Widget::Error($field_wrapper, $flagWithError));
 			} else {
 				$wrapper->appendChild($field_wrapper);
@@ -310,26 +310,26 @@
 			parent::displaySettingsPanel($wrapper, $errors);
 
 			/* second line */
-			$script_wrap = new XMLElement('div', NULL, array('class' => 'backend_action two columns'));
+			$script_wrap = new XMLElement('div', null, array('class' => 'backend_action two columns'));
 			$script_wrap->appendChild( $this->createInput('Enter the php script path <i>Relative to workspace</i>', 'script_path', $errors) );
 			$script_wrap->appendChild( $this->createInput('Action name<i>Defaults to the field name</i>', 'action_name', $errors) );
 			$wrapper->appendChild($script_wrap);
 
 			/* third line */
-			$chk_wrap = new XMLElement('div', NULL, array('class' => 'backend_action two columns'));
+			$chk_wrap = new XMLElement('div', null, array('class' => 'backend_action two columns'));
 			$this->appendShowColumnCheckbox($chk_wrap);
 			$chk_wrap->appendChild( $this->createInput('Allow multiple executions', 'allow_multiple', $errors, 'checkbox') );
 			$wrapper->appendChild($chk_wrap);
 		}
 
-		private function createInput($text, $key, $errors=NULL, $type='text') {
+		private function createInput($text, $key, $errors = null, $type = 'text') {
 			$order = $this->get('sortorder');
 			if ($type == 'checkbox') {
-				$lbl = new XMLElement('label', NULL, array('class' => 'column'));
+				$lbl = new XMLElement('label', null, array('class' => 'column'));
 			} else {
 				$lbl = new XMLElement('label', $text, array('class' => 'column'));
 			}
-			$input = new XMLElement('input', NULL, array(
+			$input = new XMLElement('input', null, array(
 					'type' => $type,
 					'value' => $this->get($key),
 					'name' => "fields[$order][$key]"
@@ -361,7 +361,7 @@
 		 * @param XMLElement $link
 		 * @return string - the html of the link
 		 */
-		public function prepareTableValue($data, XMLElement $link=NULL, $entry_id = null){
+		public function prepareTableValue($data, XMLElement $link = null, $entry_id = null){
 
 			if ($this->shouldDisplayActionButton($data)) {
 				$link = $this->createButton($data);
@@ -420,10 +420,10 @@
 
 			return Symphony::Database()->query("
 				CREATE TABLE `tbl_entries_data_$id` (
-					`id` int(11) 		unsigned NOT NULL auto_increment,
-					`entry_id` 			int(11) unsigned NOT NULL,
-					`executed`			enum('yes','no') NOT NULL DEFAULT 'no',
-					`last_execution`	datetime,
+					`id` INT(11) 		UNSIGNED NOT NULL AUTO_INCREMENT,
+					`entry_id` 			INT(11) UNSIGNED NOT NULL,
+					`executed`			ENUM('yes','no') NOT NULL DEFAULT 'no',
+					`last_execution`	DATETIME,
 					PRIMARY KEY  (`id`),
 					KEY `entry_id` (`entry_id`)
 				)  ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -439,11 +439,11 @@
 
 			return Symphony::Database()->query("
 				CREATE TABLE IF NOT EXISTS `$tbl` (
-					`id` 				int(11) unsigned NOT NULL auto_increment,
-					`field_id` 			int(11) unsigned NOT NULL,
-					`script_path`		varchar(1024) NOT NULL,
-					`allow_multiple`	enum('yes','no') NOT NULL DEFAULT 'yes',
-					`action_name`		varchar(255),
+					`id` 				INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+					`field_id` 			INT(11) UNSIGNED NOT NULL,
+					`script_path`		VARCHAR(1024) NOT NULL,
+					`allow_multiple`	ENUM('yes','no') NOT NULL DEFAULT 'yes',
+					`action_name`		VARCHAR(255),
 					PRIMARY KEY (`id`),
 					KEY `field_id` (`field_id`)
 				)  ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
