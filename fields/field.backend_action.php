@@ -187,6 +187,8 @@
 			$script_path = $this->fixScriptPath($settings['script_path']);
 			$full_path = WORKSPACE . $script_path;
 
+			// var_dump($full_path);die();
+
 			if (empty($script_path)) {
 				$errors['script_path'] = __('Script path cannot be null.');
 
@@ -416,38 +418,67 @@
 		 * Creates table needed for entries of invidual fields
 		 */
 		public function createTable() {
-			$id = $this->get('id');
-
-			return Symphony::Database()->query("
-				CREATE TABLE `tbl_entries_data_$id` (
-					`id` INT(11) 		UNSIGNED NOT NULL AUTO_INCREMENT,
-					`entry_id` 			INT(11) UNSIGNED NOT NULL,
-					`executed`			ENUM('yes','no') NOT NULL DEFAULT 'no',
-					`last_execution`	DATETIME,
-					PRIMARY KEY  (`id`),
-					KEY `entry_id` (`entry_id`)
-				)  ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-			");
+			return Symphony::Database()
+				->create('tbl_entries_data_' . $this->get('id'))
+				->ifNotExists()
+				->charset('utf8')
+				->collate('utf8_unicode_ci')
+				->fields([
+					'id' => [
+						'type' => 'int(11)',
+						'auto' => true,
+					],
+					'entry_id' => 'int(11)',
+					'executed' => [
+						'type' => 'enum',
+						'values' => ['yes','no'],
+						'default' => 'no',
+					],
+					'last_execution' => [
+						'type' => 'datetime',
+						'null' => true,
+					],
+				])
+				->keys([
+					'id' => 'primary',
+					'entry_id' => 'key',
+				])
+				->execute()
+				->success();
 		}
 
 		/**
 		 * Creates the table needed for the settings of the field
 		 */
 		public static function createFieldTable() {
-
-			$tbl = self::FIELD_TBL_NAME;
-
-			return Symphony::Database()->query("
-				CREATE TABLE IF NOT EXISTS `$tbl` (
-					`id` 				INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
-					`field_id` 			INT(11) UNSIGNED NOT NULL,
-					`script_path`		VARCHAR(1024) NOT NULL,
-					`allow_multiple`	ENUM('yes','no') NOT NULL DEFAULT 'yes',
-					`action_name`		VARCHAR(255),
-					PRIMARY KEY (`id`),
-					KEY `field_id` (`field_id`)
-				)  ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-			");
+			return Symphony::Database()
+				->create(self::FIELD_TBL_NAME)
+				->ifNotExists()
+				->charset('utf8')
+				->collate('utf8_unicode_ci')
+				->fields([
+					'id' => [
+						'type' => 'int(11)',
+						'auto' => true,
+					],
+					'field_id' => 'int(11)',
+					'script_path' => 'varchar(1024)',
+					'allow_multiple' => [
+						'type' => 'enum',
+						'values' => ['yes','no'],
+						'default' => 'yes',
+					],
+					'action_name' => [
+						'type' => 'varchar(255)',
+						'null' => true,
+					],
+				])
+				->keys([
+					'id' => 'primary',
+					'field_id' => 'key',
+				])
+				->execute()
+				->success();
 		}
 
 
@@ -455,11 +486,11 @@
 		 * Drops the table needed for the settings of the field
 		 */
 		public static function deleteFieldTable() {
-			$tbl = self::FIELD_TBL_NAME;
-
-			return Symphony::Database()->query("
-				DROP TABLE IF EXISTS `$tbl`
-			");
+			return Symphony::Database()
+				->drop(self::FIELD_TBL_NAME)
+				->ifExists()
+				->execute()
+				->success();
 		}
 
 	}
