@@ -59,16 +59,14 @@
 
 		protected function __customAction(&$entry) {
 			if (isset($_POST['action']['backend-action'])) {
-
 				$field_id = intval($_POST['action']['backend-action']);
-				$field = FieldManager::fetch($field_id);
-
-				//var_dump($entry);die;
+				$field = (new FieldManager)
+					->select()
+					->field($field_id)
+					->execute()
+					->next();
 
 				if ($field != null) {
-
-					//var_dump($items, $entry, $field);die;
-
 					$sucess = false;
 					$sucess = @$field->executeBackendAction($entry);
 
@@ -85,12 +83,11 @@
 
 		public function __customActionTable($context) {
 			$items = $context['checked'];
-
-			//var_dump($items);
-
-			$entry = EntryManager::fetch($items[0]);
-
-			//var_dump($entry);die;
+			$entry = (new EntryManager)
+				->select()
+				->entry($items[0])
+				->execute()
+				->next();
 
 			if (is_array($entry) && !empty($entry)) {
 				$this->__customAction($entry[0]);
@@ -98,8 +95,6 @@
 		}
 
 		public function __customActionEdit($context) {
-			//var_dump($context['entry']);die;
-
 			$this->__customAction($context['entry']);
 		}
 
